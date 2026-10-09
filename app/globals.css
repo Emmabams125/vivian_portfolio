@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/*
+ * Tailwind v4 is configured here, not in tailwind.config.js.
+ * --font-outfit-family / --font-ovo-family are injected by next/font in app/layout.tsx.
+ */
+@theme {
+  --font-outfit: var(--font-outfit-family), ui-sans-serif, system-ui, sans-serif;
+  --font-ovo: var(--font-ovo-family), ui-serif, Georgia, serif;
+  --font-sans: var(--font-outfit);
+
+  --color-navy: #10112b;
+  --color-navy-light: #171838;
+  --color-purple: #6c5cf0;
+  --color-purple-light: #ede9fe;
+  --color-purple-dark: #574ad1;
+  --color-light-hover: #f7f5ff;
+
+  /* Hard offset shadows for the card hover lift */
+  --shadow-hard: 4px 4px 0 #10112b;
+  --shadow-hard-purple: 4px 4px 0 #6c5cf0;
+
+  --grid-template-columns-auto: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+body {
+  font-family: var(--font-outfit);
+}
