@@ -35,7 +35,8 @@ export const profileSummary = [
 
 export const experienceData = [
     {
-        initials: 'V',
+        initials: 'B',
+        logo: '/benva-logo.png',
         role: 'Chief Marketing Officer (CMO)',
         company: 'BENVA',
         period: 'May 2026 – Present',
@@ -77,6 +78,7 @@ export const experienceData = [
 export const caseStudies = [
     {
         initials: 'B',
+        logo: '/benva-logo.png',
         company: 'Benva',
         title: 'Acquiring Early Users for a SaaS Product',
         category: 'Product Marketing · User Acquisition',

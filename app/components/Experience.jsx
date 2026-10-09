@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { experienceData } from '@/assets/data'
 import { IconArrowRight } from '@/assets/icons'
@@ -24,7 +25,7 @@ const Experience = () => {
                 </div>
 
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    {experienceData.map(({ initials, role, company, period, bullets, selectedWork }, index) => (
+                    {experienceData.map(({ initials, logo, role, company, period, bullets, selectedWork }, index) => (
                         <motion.div
                             key={company}
                             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +33,11 @@ const Experience = () => {
                             transition={{ duration: 0.6, delay: 0.6 + 0.1 * index }}
                             className='bg-white border border-gray-200 rounded-2xl p-6 flex flex-col cursor-pointer hover:bg-light-hover hover:border-navy hover:-translate-y-1 hover:shadow-hard duration-500'
                         >
-                            <span className='w-10 h-10 rounded-lg bg-purple text-white flex items-center justify-center font-semibold mb-4'>{initials}</span>
+                            {logo ? (
+                                <Image src={logo} alt={`${company} logo`} width={40} height={40} className='w-10 h-10 rounded-lg object-cover border border-gray-200 mb-4' />
+                            ) : (
+                                <span className='w-10 h-10 rounded-lg bg-purple text-white flex items-center justify-center font-semibold mb-4'>{initials}</span>
+                            )}
                             <h3 className='font-semibold text-navy uppercase text-xs tracking-wide mb-1'>{company}</h3>
                             <p className='font-medium text-gray-800'>{role}</p>
                             <p className='text-sm text-gray-500 mb-4'>{period}</p>

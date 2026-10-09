@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { caseStudies } from '@/assets/data'
 
@@ -32,7 +33,7 @@ const CaseStudies = () => {
                 </div>
 
                 <div className='flex flex-col gap-8'>
-                    {caseStudies.map(({ initials, company, title, category, overview, challenge, approach, results, tags }) => (
+                    {caseStudies.map(({ initials, logo, company, title, category, overview, challenge, approach, results, tags }) => (
                         <motion.article
                             key={company}
                             initial={{ opacity: 0, y: 20 }}
@@ -42,7 +43,11 @@ const CaseStudies = () => {
                         >
                             <div className='p-6 sm:p-8 border-b border-gray-100'>
                                 <div className='flex items-center gap-3 mb-4'>
-                                    <span className='w-10 h-10 rounded-lg bg-purple text-white flex items-center justify-center font-semibold shrink-0'>{initials}</span>
+                                    {logo ? (
+                                        <Image src={logo} alt={`${company} logo`} width={40} height={40} className='w-10 h-10 rounded-lg object-cover border border-gray-200 shrink-0' />
+                                    ) : (
+                                        <span className='w-10 h-10 rounded-lg bg-purple text-white flex items-center justify-center font-semibold shrink-0'>{initials}</span>
+                                    )}
                                     <div>
                                         <p className='font-semibold text-navy uppercase text-xs tracking-wide'>{company}</p>
                                         <p className='text-xs text-gray-500'>{category}</p>
