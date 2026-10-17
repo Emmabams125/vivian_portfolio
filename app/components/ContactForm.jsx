@@ -3,18 +3,17 @@ import React, { useState } from 'react'
 import { contactInfo } from '@/assets/data'
 import { IconArrowRight } from '@/assets/icons'
 
-// Web3Forms access key: messages are delivered to the inbox this key was created with
-const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
-
 const inputClass = 'w-full p-3 outline-none border border-gray-300 rounded-xl bg-white text-gray-800 placeholder:text-gray-400 focus:border-purple focus:ring-2 focus:ring-purple/20 duration-300'
 
-const ContactForm = () => {
+// accessKey: the Web3Forms key, read from WEB3FORMS_KEY on the server (see app/contact/page.tsx).
+// Messages are delivered to the inbox the key was created with.
+const ContactForm = ({ accessKey }) => {
     const [status, setStatus] = useState({ state: 'idle', message: '' })
 
     const onSubmit = async (event) => {
         event.preventDefault()
 
-        if (!WEB3FORMS_KEY) {
+        if (!accessKey) {
             setStatus({ state: 'error', message: `The contact form isn't set up yet. Please email ${contactInfo.email} directly.` })
             return
         }
@@ -22,7 +21,7 @@ const ContactForm = () => {
         setStatus({ state: 'sending', message: 'Sending...' })
 
         const formData = new FormData(event.target)
-        formData.append('access_key', WEB3FORMS_KEY)
+        formData.append('access_key', accessKey)
         formData.append('subject', `New portfolio message from ${formData.get('name')}`)
 
         try {

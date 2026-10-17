@@ -7,5 +7,6 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <Contact />;
+  // Web3Forms keys are meant to be used from the browser, so passing it to the form is safe
+  return <Contact web3formsKey={process.env.WEB3FORMS_KEY} />;
 }

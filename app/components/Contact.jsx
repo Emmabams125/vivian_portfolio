@@ -5,7 +5,7 @@ import { IconCheck, IconCopy, IconExternal, IconLinkedIn, IconMail } from '@/ass
 import ContactForm from './ContactForm'
 import { PageHero, Reveal, Section } from './ui'
 
-const Contact = () => {
+const Contact = ({ web3formsKey }) => {
     const [copied, setCopied] = useState(false)
 
     const copyEmail = async () => {
@@ -58,7 +58,7 @@ const Contact = () => {
                     </div>
 
                     <Reveal delay={0.3} className='lg:col-span-3'>
-                        <ContactForm />
+                        <ContactForm accessKey={web3formsKey} />
                     </Reveal>
                 </div>
             </Section>
