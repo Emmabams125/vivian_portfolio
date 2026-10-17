@@ -13,20 +13,6 @@ export const IconLinkedIn = (props) => (
     </svg>
 )
 
-export const IconX = (props) => (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-        <path d="M3 3h4.2l4 5.6L15.8 3H21l-6.9 8.6L21 21h-4.2l-4.4-6.1L7 21H3l7.2-9L3 3Z" />
-    </svg>
-)
-
-export const IconInstagram = (props) => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" />
-    </svg>
-)
-
 export const IconDownload = (props) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
         <path d="M12 3v12m0 0-4-4m4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
@@ -90,6 +76,17 @@ const skillIcons = {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
             <path d="m3 17 6-6 4 4 8-8" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M15 7h6v6" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    ),
+    copy: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+            <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z" strokeLinejoin="round" />
+            <path d="M14 3v6h6M8 13h8M8 17h5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    ),
+    analysis: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+            <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" strokeLinecap="round" />
         </svg>
     ),
 }
@@ -163,5 +160,25 @@ export const Logo = (props) => (
         <rect width="64" height="64" rx="16" fill="url(#logo-bg)" />
         <path d="M18 17 L32 47" stroke="#ffffff" strokeWidth="8" strokeLinecap="round" />
         <path d="M46 17 L32 47" stroke="url(#logo-accent)" strokeWidth="8" strokeLinecap="round" />
+    </svg>
+)
+
+export const IconExternal = (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+        <path d="M14 4h6v6M20 4l-9 9" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" strokeLinecap="round" />
+    </svg>
+)
+
+export const IconCheck = (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+        <path d="m5 13 4 4 10-10" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+)
+
+export const IconCopy = (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" {...props}>
+        <rect x="9" y="9" width="11" height="11" rx="2" />
+        <path d="M5 15V5a1 1 0 0 1 1-1h10" strokeLinecap="round" />
     </svg>
 )

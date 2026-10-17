@@ -1,65 +1,71 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { experienceData } from '@/assets/data'
-import { IconArrowRight } from '@/assets/icons'
+import { education, experienceData } from '@/assets/data'
+import { IconCap } from '@/assets/icons'
+import { Bullet, PageHero, Reveal, Section, SectionHeading, cardHover } from './ui'
 
-const Experience = () => {
-    return (
-        <motion.div
-            id='experience'
-            className='w-full px-[8%] xl:px-[10%] py-16 scroll-mt-20 bg-gray-50'
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-        >
-            <div className='max-w-6xl mx-auto'>
-                <div className='flex items-end justify-between flex-wrap gap-3 mb-10'>
-                    <div>
-                        <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className='text-sm font-semibold tracking-widest text-purple mb-2'>EXPERIENCE</motion.p>
-                        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }} className='text-3xl sm:text-4xl font-semibold text-navy'>Where I&apos;ve Worked</motion.h2>
-                    </div>
-                    <a href="#experience" className='inline-flex items-center gap-1 text-sm text-purple font-medium hover:gap-2 transition-all'>
-                        View all experience <IconArrowRight className='w-4 h-4' />
-                    </a>
-                </div>
+const Experience = () => (
+    <>
+        <PageHero eyebrow='EXPERIENCE & EDUCATION' title='Where I’ve worked and studied'>
+            <p>From leading marketing at an early-stage SaaS product to copywriting and content for brands and organisations.</p>
+        </PageHero>
 
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-                    {experienceData.map(({ initials, logo, role, company, period, bullets, selectedWork }, index) => (
-                        <motion.div
-                            key={company}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.6 + 0.1 * index }}
-                            className='bg-white border border-gray-200 rounded-2xl p-6 flex flex-col cursor-pointer hover:bg-light-hover hover:border-navy hover:-translate-y-1 hover:shadow-hard duration-500'
-                        >
-                            {logo ? (
-                                <Image src={logo} alt={`${company} logo`} width={40} height={40} className='w-10 h-10 rounded-lg object-cover border border-gray-200 mb-4' />
-                            ) : (
-                                <span className='w-10 h-10 rounded-lg bg-purple text-white flex items-center justify-center font-semibold mb-4'>{initials}</span>
-                            )}
-                            <h3 className='font-semibold text-navy uppercase text-xs tracking-wide mb-1'>{company}</h3>
-                            <p className='font-medium text-gray-800'>{role}</p>
-                            <p className='text-sm text-gray-500 mb-4'>{period}</p>
-                            <ul className='space-y-2 text-sm text-gray-600 flex-1'>
-                                {bullets.map((b, i) => (
-                                    <li key={i} className='flex gap-2'>
-                                        <span className='text-purple mt-1.5 shrink-0'>&#9679;</span>
-                                        <span>{b}</span>
-                                    </li>
-                                ))}
+        <Section>
+            <SectionHeading eyebrow='EXPERIENCE' title='Professional experience' />
+            <ol className='relative border-l-2 border-purple/20 ml-3 sm:ml-5 flex flex-col gap-10'>
+                {experienceData.map(({ initials, logo, role, company, period, bullets, selectedWork }, index) => (
+                    <Reveal as='li' key={company} delay={0.1 * index} className='relative pl-8 sm:pl-12'>
+                        <span className='absolute -left-[11px] top-7 w-5 h-5 rounded-full bg-white border-4 border-purple' aria-hidden='true' />
+                        <div className={`bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 ${cardHover}`}>
+                            <div className='flex flex-wrap items-start justify-between gap-4 mb-5'>
+                                <div className='flex items-center gap-4'>
+                                    {logo ? (
+                                        <Image src={logo} alt={`${company} logo`} width={48} height={48} className='w-12 h-12 rounded-xl border border-gray-200' />
+                                    ) : (
+                                        <span className='w-12 h-12 rounded-xl bg-purple text-white flex items-center justify-center font-semibold text-lg'>{initials}</span>
+                                    )}
+                                    <div>
+                                        <h3 className='font-semibold text-lg text-navy'>{role}</h3>
+                                        <p className='text-gray-600'>{company}</p>
+                                    </div>
+                                </div>
+                                <span className='text-sm text-purple bg-purple-light rounded-full px-3 py-1'>{period}</span>
+                            </div>
+                            <ul className='flex flex-col gap-2 text-gray-700'>
+                                {bullets.map((b) => <Bullet key={b}>{b}</Bullet>)}
                             </ul>
                             {selectedWork && (
-                                <p className='text-xs text-gray-500 mt-5 pt-4 border-t border-gray-100'>
-                                    <span className='font-semibold text-gray-700'>Selected work:</span> {selectedWork.join(' · ')}
-                                </p>
+                                <div className='mt-6 pt-5 border-t border-gray-100'>
+                                    <p className='text-xs font-semibold tracking-widest text-gray-500 mb-3'>SELECTED WORK</p>
+                                    <ul className='flex flex-wrap gap-2'>
+                                        {selectedWork.map((w) => (
+                                            <li key={w} className='text-sm text-gray-700 border border-gray-200 rounded-full px-3 py-1 hover:border-purple hover:text-purple duration-300'>{w}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             )}
-                        </motion.div>
-                    ))}
+                        </div>
+                    </Reveal>
+                ))}
+            </ol>
+        </Section>
+
+        <Section muted>
+            <SectionHeading eyebrow='EDUCATION' title='Academic background' />
+            <Reveal delay={0.2} className={`bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6 max-w-3xl ${cardHover}`}>
+                <span className='w-16 h-16 rounded-2xl bg-purple-light flex items-center justify-center text-purple shrink-0'>
+                    <IconCap className='w-8 h-8' />
+                </span>
+                <div className='flex-1'>
+                    <h3 className='text-lg font-semibold text-navy'>{education.school}</h3>
+                    <p className='text-gray-700 mt-1'>{education.degree}</p>
+                    <p className='text-sm text-gray-500 mt-1'>{education.grade}</p>
                 </div>
-            </div>
-        </motion.div>
-    )
-}
+                <span className='self-start sm:self-center text-sm text-purple bg-purple-light rounded-full px-3 py-1'>Class of {education.year}</span>
+            </Reveal>
+        </Section>
+    </>
+)
 
 export default Experience

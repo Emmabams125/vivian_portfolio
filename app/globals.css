@@ -16,6 +16,10 @@
   --color-purple-dark: #574ad1;
   --color-light-hover: #f7f5ff;
 
+  /* Chart series (validated for colour-blind separation on white) */
+  --color-series-1: #6c5cf0;
+  --color-series-2: #eb6834;
+
   /* Hard offset shadows for the card hover lift */
   --shadow-hard: 4px 4px 0 #10112b;
   --shadow-hard-purple: 4px 4px 0 #6c5cf0;

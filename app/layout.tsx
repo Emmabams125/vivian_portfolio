@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit, Ovo } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
@@ -15,15 +17,22 @@ const ovo = Ovo({
 });
 
 export const metadata: Metadata = {
-  title: "Vivian Nwije - Marketing Strategist",
+  title: {
+    default: "Vivian Nwije | Marketing Strategist",
+    template: "%s | Vivian Nwije",
+  },
   description: "Portfolio of Vivian Nwije, a marketing strategist specializing in product marketing, growth and content.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`${outfit.variable} ${ovo.variable} scroll-smooth`} data-scroll-behavior="smooth">
       <body
-        className={`${outfit.variable} ${ovo.variable} h-full antialiased leading-8 overflow-x-hidden bg-white text-gray-800`}>{children}</body>
+        className={`h-full antialiased leading-8 overflow-x-hidden bg-white text-gray-800`}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

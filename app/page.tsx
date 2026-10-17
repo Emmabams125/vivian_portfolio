@@ -1,26 +1,13 @@
-'use client';
-import Navbar from "./components/Navbar";
 import Header from "./components/Header";
-import About from "./components/About";
-import Experience from "./components/Experience";
-import Skills from "./components/Skills";
-import CaseStudies from "./components/CaseStudies";
-import Education from "./components/Education";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import { FeaturedCaseStudy, HomeStory, Services } from "./components/Home";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
-      <Navbar />
       <Header />
-      <About />
-      <Experience />
-      <Skills />
-      <CaseStudies />
-      <Education />
-      <Contact />
-      <Footer />
+      <HomeStory />
+      <Services />
+      <FeaturedCaseStudy />
     </>
   );
 }

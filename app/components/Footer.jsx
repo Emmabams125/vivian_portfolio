@@ -1,43 +1,64 @@
+'use client'
 import React from 'react'
-import { motion } from 'framer-motion'
-import { socialLinks, sideNotes } from '@/assets/data'
-import { IconArrowRight, IconLinkedIn, IconX, IconInstagram, IconMail } from '@/assets/icons'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { contactInfo, navLinks } from '@/assets/data'
+import { IconLinkedIn, IconMail, Logo } from '@/assets/icons'
+import { ButtonLink, Reveal } from './ui'
 
 const Footer = () => {
+    const pathname = usePathname()
+
     return (
-        <motion.div
-            className='w-full bg-navy text-white px-[8%] xl:px-[10%] pt-16 pb-8'
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-        >
-            <div className='max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-10'>
+        <footer className='w-full bg-navy text-white px-[8%] xl:px-[10%] pt-16 pb-8'>
+            {/* The contact page already is the call to action */}
+            {pathname !== '/contact' && (
+                <Reveal className='max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-12 mb-10 border-b border-white/10'>
+                    <div>
+                        <h2 className='text-3xl sm:text-4xl font-semibold mb-3'>Let&apos;s work together</h2>
+                        <p className='text-gray-300 max-w-xl'>
+                            For marketing strategy, product messaging, content, or growth support, I bring a practical approach focused on reaching the right audience and learning from results.
+                        </p>
+                    </div>
+                    <ButtonLink href='/contact' className='self-start lg:self-auto whitespace-nowrap'>Get in Touch</ButtonLink>
+                </Reveal>
+            )}
+
+            <div className='max-w-6xl mx-auto grid sm:grid-cols-[1fr_auto_auto] gap-10 pb-10'>
                 <div>
-                    <h2 className='text-3xl sm:text-4xl font-semibold mb-3'>Let&apos;s Work Together</h2>
-                    <p className='text-gray-300 max-w-md'>
-                        I&apos;m always open to new opportunities, collaborations and exciting projects. Feel free to reach out.
-                    </p>
+                    <Link href='/' className='inline-flex items-center gap-2.5 mb-3'>
+                        <Logo className='w-9 h-9 ring-1 ring-white/15 rounded-[10px]' />
+                        <span className='font-semibold text-lg'>Vivian Nwije</span>
+                    </Link>
+                    <p className='text-sm text-gray-400 max-w-xs'>Marketing Strategist · Product Marketing · Growth Marketing</p>
                 </div>
-                <div className='flex items-center gap-6'>
-                    <a href='#contact' className='inline-flex items-center gap-2 px-7 py-3 rounded-full bg-purple hover:bg-purple-dark transition-colors text-sm font-medium whitespace-nowrap'>
-                        Get in Touch <IconArrowRight className='w-4 h-4' />
-                    </a>
-                    <div className='flex items-center gap-4'>
-                        <a href={socialLinks.linkedin} target='_blank' rel='noopener noreferrer' aria-label='LinkedIn' className='text-white/70 hover:text-white hover:-translate-y-1 duration-500'><IconLinkedIn className='w-5 h-5' /></a>
-                        <a href={socialLinks.twitter} target='_blank' rel='noopener noreferrer' aria-label='X' className='text-white/70 hover:text-white hover:-translate-y-1 duration-500'><IconX className='w-5 h-5' /></a>
-                        <a href={socialLinks.instagram} target='_blank' rel='noopener noreferrer' aria-label='Instagram' className='text-white/70 hover:text-white hover:-translate-y-1 duration-500'><IconInstagram className='w-5 h-5' /></a>
-                        <a href={socialLinks.mail} aria-label='Email' className='text-white/70 hover:text-white hover:-translate-y-1 duration-500'><IconMail className='w-5 h-5' /></a>
+
+                <div>
+                    <p className='text-xs font-semibold tracking-widest text-purple-200 mb-3'>PAGES</p>
+                    <ul className='grid grid-cols-2 gap-x-8 gap-y-1 text-sm text-gray-300'>
+                        {navLinks.map(({ label, href }) => (
+                            <li key={href}><Link href={href} className='hover:text-white duration-300'>{label}</Link></li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div>
+                    <p className='text-xs font-semibold tracking-widest text-purple-200 mb-3'>CONTACT</p>
+                    <div className='flex flex-col gap-2 text-sm'>
+                        <a href={contactInfo.linkedinUrl} target='_blank' rel='noopener noreferrer' className='inline-flex items-center gap-2 text-gray-300 hover:text-white hover:translate-x-1 duration-500'>
+                            <IconLinkedIn className='w-4 h-4' /> LinkedIn
+                        </a>
+                        <a href={contactInfo.gmailUrl} target='_blank' rel='noopener noreferrer' className='inline-flex items-center gap-2 text-gray-300 hover:text-white hover:translate-x-1 duration-500'>
+                            <IconMail className='w-4 h-4' /> {contactInfo.email}
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div className='max-w-6xl mx-auto border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-gray-400'>
+            <div className='max-w-6xl mx-auto border-t border-white/10 pt-6 text-sm text-gray-400'>
                 <p>&copy; {new Date().getFullYear()} Vivian Nwije. All rights reserved.</p>
-                <ul className='flex items-center gap-6'>
-                    {sideNotes.map((note) => <li key={note}>{note}</li>)}
-                </ul>
             </div>
-        </motion.div>
+        </footer>
     )
 }
 
